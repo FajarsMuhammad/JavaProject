@@ -27,13 +27,13 @@
 		</navigation-case>
 	</navigation-rule>
 	
-	<navigation-rule>
+	<!-- <navigation-rule>
 		<from-view-id>/pages/templates/main.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{loginBean.logout}</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
 		</navigation-case>
-	</navigation-rule>
+	</navigation-rule> -->
 
 </faces-config>
