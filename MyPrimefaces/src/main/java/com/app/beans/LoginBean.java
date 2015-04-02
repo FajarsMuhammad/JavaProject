@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 
 import com.app.service.AuthenticationService;
 
