@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:body>
+	<ui:composition template="../templates/main.xhtml">
+		<ui:define name="body">
+			<h:form id="formInput">
+				<p:panel header="Menu" toggleable="true">
+					<br />
+
+					<p:treeTable id="treeMenuTable" value="#{treeTableMenuBean.parent}" var="menu">
+						<p:column headerText="#{msg['label.name']}" style="width:48%">
+							<h:outputText value="#{menu.menuName}" />
+						</p:column>
+
+						<p:column headerText="#{msg['label.url']}">
+							<!-- <h:outputText rendered="#{menu.menuUrl == #}" value="" /> -->
+							<h:outputText value="#{menu.menuUrl}" />
+						</p:column>
+
+						<p:column headerText="#{msg['label.action']}" style="text-align:center" >
+							<p:commandLink action="/pages/setup/menuInput"
+								actionListener="#{treeTableMenuBean.prepareUpdate}" ajax="false">
+								<f:param name="menuIdParam" value="#{menu.id}" />
+								<h:outputText value="#{msg['label.edit']}" />
+							</p:commandLink>							
+							|					  
+							<p:commandLink action="#{treeTableMenuBean.goListPage}"
+								actionListener="#{treeTableMenuBean.delete}"
+								onclick="if(!confirm('Are you sure you want to delete this record?')) return false;"
+								ajax="false">
+								<f:param name="menuIdParam" value="#{menu.id}" />
+								<h:outputText value="#{msg['label.delete']}" />
+							</p:commandLink>
+						</p:column>
+					</p:treeTable>
+					<br />
+					<p:commandButton id="addButton" value="#{msg['label.add']}"
+						action="#{treeTableMenuBean.goInputPage}"
+						actionListener="#{treeTableMenuBean.prepareAdd}" process="@this"
+						ajax="false" immediate="true">
+					</p:commandButton>				
+					
+				</p:panel>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

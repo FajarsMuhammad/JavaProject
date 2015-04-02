@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:body>
+	<ui:composition template="../templates/main.xhtml">
+		<ui:define name="body">
+			<h:form>
+				<p:panel header="Customer">
+					<br />
+					<h:panelGrid columns="3">
+						
+						<h:inputHidden id="id" value="#{customerBean.current.customerId}"/>
+						<h:outputText value="" />
+						<h:outputText value="" />
+
+						<h:outputText value="#{msg['label.code']} " />
+						<p:inputText id="customerCode" value="#{customerBean.current.customerCode}" size="20"
+							required="true" label="Code" readonly="true">
+						</p:inputText>
+						<p:message for="customerCode" style="color:red" />
+
+						<h:outputText value="#{msg['label.name']} " />
+						<p:inputText id="customerName" value="#{customerBean.current.customerName}" size="30"
+							required="true" label="Name">
+						</p:inputText>
+						<p:message for="customerName" style="color:red" />
+
+						<h:outputText value="Grade" />
+						<h:selectOneMenu value="#{customerBean.current.customerGrade}">
+							<f:selectItem itemLabel="#{msg['label.chooseOne']} " itemValue="" />
+							<f:selectItems value="#{customerBean.getGradeList()}" var="g"
+								itemLabel="#{g.label}" itemValue="#{g.value}" />
+						</h:selectOneMenu>
+						<h:outputText value=" " />
+
+						<h:outputText value="#{msg['label.address']} " />
+						<p:inputTextarea id="address" value="#{customerBean.current.address}"
+							cols="50" rows="5" required="false" label="Address">
+						</p:inputTextarea>
+						<h:outputText value=" " />
+
+						<h:outputText value="Term Of Payment" />
+						<h:selectBooleanCheckbox id="termOfPayment"
+							value="#{customerBean.current.termOfPayment}" />
+						<h:outputText value=" " />
+					</h:panelGrid>
+
+					<p:commandButton id="saveButton" value="#{msg['label.save']} "
+						actionListener="#{customerBean.saveOrUpdate}"
+						action="/pages/master/customerList" process="@this" ajax="false">
+					</p:commandButton>
+					<h:outputText value=" " />
+					<p:commandButton id="cancelButton" value="#{msg['label.cancel']}"
+						action="/pages/master/customerList" process="@this" immediate="true">
+					</p:commandButton>
+				</p:panel>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

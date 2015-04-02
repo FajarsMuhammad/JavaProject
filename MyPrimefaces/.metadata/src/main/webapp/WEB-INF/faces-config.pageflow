@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14267427316280" configfile="/MyPrimefaces/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf14271671430360" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14279589249970 pf14279589249981" inlinks="pf14271671480986" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/templates/main.xhtml" id="pf14271671480987" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14271671480986" path="/pages/templates/main.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.jsf" id="pf14279589249982" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14279589249970" path="/index.jsf"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.jsf" id="pf14279589249983" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14279589249981" path="/login.jsf"/>
+  <links id="pf14271671480986" target="pf14271671430360" source="pf14271671480987" outcome="success" fromaction="#{loginBean.logout}"/>
+  <links id="pf14279589249970" target="pf14279589249982" source="pf14271671430360" outcome="success" fromaction="#{loginBean.login}"/>
+  <links id="pf14279589249981" target="pf14279589249983" source="pf14271671430360" outcome="failed" fromaction="#{loginBean.login}"/>
+</pageflow:Pageflow>

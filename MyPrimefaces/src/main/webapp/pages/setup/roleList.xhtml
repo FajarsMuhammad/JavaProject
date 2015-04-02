@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:body>
+	<ui:composition template="../templates/main.xhtml">
+		<!-- <ui:define name="heading">
+			<ui:include src="../templates/menubar.xhtml" />
+		</ui:define> -->
+		<ui:define name="body">
+			<h:form id="formList">
+				<p:panel header="Role" toggleable="true">
+					<br />
+
+					<h:outputText value="Search" />
+					<h:selectOneMenu id="searchColumn" value="#{roleBean.searchColumn}">
+						<f:selectItem itemLabel="Please Choose" itemValue="" />
+						<f:selectItems value="#{roleBean.getColumnList()}" var="c"
+							itemLabel="#{c.label}" itemValue="#{c.value}" />
+					</h:selectOneMenu>
+					<h:outputText value=" " />
+					<p:inputText id="searchValue" value="#{roleBean.searchValue}"
+						size="30" />
+					<p:commandButton id="searchButton" value="Search"
+						action="/pages/master/roleList"
+						actionListener="#{roleBean.search}" ajax="false">
+					</p:commandButton>
+					<br />
+					<br />
+
+					<p:dataTable var="c" value="#{roleBean.getRoleDataModel()}"
+						paginator="true" rows="10"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="10,20,50"
+						selection="#{roleBean.selectedRoles}" id="roleTable">
+
+						<p:column selectionMode="multiple" />
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['label.roleShortDescription']}" />
+							</f:facet>
+							<h:outputText value="#{c.roleShortDescription}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['label.roleLongDescription']}" />
+							</f:facet>
+							<h:outputText value="#{c.roleLongDescription}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['label.createdDate']}" />
+							</f:facet>
+							<h:outputText value="">
+								<f:convertDateTime pattern="d-M-yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align:center">
+							<f:facet name="header">
+								<h:outputText value="#{msg['label.action']}" />
+							</f:facet>
+							<p:commandLink action="#{roleBean.goInputPage}"
+								actionListener="#{roleBean.prepareUpdate}" ajax="false"
+								immediate="true">
+								<f:param name="roleIdParam" value="#{c.id}" />
+								<h:outputText value="#{msg['label.edit']}" />
+								<f:setPropertyActionListener value="#{c}"
+									target="#{roleBean.detailedRole}" />
+							</p:commandLink>
+							|					  
+							<p:commandLink action="#{roleBean.goListPage}"
+								actionListener="#{roleBean.delete}"
+								onclick="if(!confirm('Are you sure you want to delete this record?')) return false;"
+								ajax="false">
+								<f:param name="roleIdParam" value="#{c.id}" />
+								<h:outputText value="#{msg['label.delete']}" />
+							</p:commandLink>
+
+							<!-- <p:commandLink id="showDialogButton"
+								update=":dialogForm:confirmDialog" title="Delete"
+								oncomplete="confirmation.show()">
+								<h:outputText value="Delete"/>
+								<f:setPropertyActionListener value="#{c}"
+									target="#{roleBean.detailedRole}" />
+							</p:commandLink> -->
+						</p:column>
+					</p:dataTable>
+
+					<p:commandButton id="addButton" value="#{msg['label.add']}"
+						action="#{roleBean.goInputPage}"
+						actionListener="#{roleBean.prepareAdd}" process="@this"
+						ajax="false" immediate="true">
+					</p:commandButton>
+				</p:panel>
+			</h:form>
+			<h:form id="dialogForm">
+				<p:confirmDialog id="confirmDialog" header="Confirm Delete"
+					severity="alert" widgetVar="confirmation" appendToBody="true" effect="FADE" effectDuration="1">
+					<f:facet name="message">
+						<h:outputText
+							value="Are you sure want to delete #{roleBean.detailedRole.roleShortDescription} ?" />
+					</f:facet>
+
+					<p:commandButton id="confirm" value="Yes"
+						oncomplete="confirmation.hide()"
+						action="#{roleBean.delete}" update=":formList:roleTable" ajax="false">
+						<f:param name="roleIdParam" value="#{roleBean.detailedRole.id}" />
+								
+						</p:commandButton>
+					<p:commandButton id="decline" value="No"
+						onclick="confirmation.hide()" type="button" />
+
+				</p:confirmDialog>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

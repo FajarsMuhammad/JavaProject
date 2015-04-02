@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:body>
+	<ui:composition template="../templates/main.xhtml">
+		<!-- <ui:define name="heading">
+			<ui:include src="../templates/menubar.xhtml" />
+		</ui:define> -->
+		<ui:define name="body">
+			<h:form id="formInput">
+				<p:messages id="messages" autoUpdate="true" />
+				
+				<p:panel header="Role">
+					<br />
+					<h:panelGrid columns="3">
+						<h:inputHidden id="id" value="#{roleBean.current.id}"/>
+						<h:outputText value="" />
+						<h:outputText value="" />
+
+						<h:outputText value="#{msg['label.roleShortDescription']} " />
+						<p:inputText id="roleShortDescription"
+							value="#{roleBean.current.roleShortDescription}" size="20"
+							required="true" label="#{msg['label.roleShortDescription']} ">
+						</p:inputText>
+						<p:message for="roleShortDescription" style="color:red" />
+
+						<h:outputText value="#{msg['label.roleLongDescription']} " />
+						<p:inputText id="roleLongDescription"
+							value="#{roleBean.current.roleLongDescription}" size="30"
+							required="false" label="roleLongDescription">
+						</p:inputText>
+						<h:outputText value="" />
+
+					</h:panelGrid>
+
+					<p:commandButton id="saveButton" value="#{msg['label.save']} "
+						actionListener="#{roleBean.saveOrUpdate}"
+						action="#{roleBean.goListPage}" ajax="false">
+					</p:commandButton>
+					<h:outputText value=" " />
+					<p:commandButton id="cancelButton" value="#{msg['label.cancel']}"
+						action="#{roleBean.goListPage}" ajax="false" process="@this"
+						immediate="true">
+					</p:commandButton>
+				</p:panel>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

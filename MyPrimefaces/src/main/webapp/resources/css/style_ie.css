@@ -1,0 +1,27 @@
+* html #wrapper,
+* html #footer {
+	width: expression((documentElement.clientWidth||document.body.clientWidth)<800?'800px':'');
+}
+
+.ui-layout-north .ui-layout-unit-content { 
+	overflow: visible !important;
+	/*margin: 10px;*/
+	top: 55px;
+	/*background: #dddddd;*/
+}
+
+.ui-layout-north {
+	padding: 20px;
+	z-index: 10 !important;
+	overflow: visible !important;;
+	-moz-box-shadow: 5px 5px 5px #888888; /* Firefox 3.6 and earlier */
+	box-shadow: 5px 5px 5px #888888;
+	/*background: #dddddd;*/
+}
+
+.ui-layout-center {
+	border: 0px !important;
+	padding: 0 5px 0 5px !important;
+	-moz-box-shadow: 5px 5px 5px #888888; /* Firefox 3.6 and earlier */
+	box-shadow: 5px 5px 5px #888888;
+}
