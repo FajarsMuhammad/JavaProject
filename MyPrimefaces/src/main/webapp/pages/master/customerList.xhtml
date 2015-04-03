@@ -35,7 +35,7 @@
 						value="#{customerBean.getModel()}" widgetVar="customersTable"
 						paginator="true" rows="10" rowKey="#{c.customerId}"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						rowsPerPageTemplate="5,10,20,50,100" lazy="true"
+						rowsPerPageTemplate="10,20,50,100" lazy="true"
 						selection="#{customerBean.selectedCustomers}">
 
 						<p:column selectionMode="multiple" />
