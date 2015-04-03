@@ -36,9 +36,17 @@
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
-			<value>classpath:com/app/resource/db.properties</value>
+			<value>classpath:com/app/resource/hibernate.properties</value>
 		</property>
 	</bean>
+	<!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>WEB-INF/hibernate.properties</value>
+			</list>
+		</property>
+	</bean> -->
+	
 
 
 	<bean id="dataSource"
