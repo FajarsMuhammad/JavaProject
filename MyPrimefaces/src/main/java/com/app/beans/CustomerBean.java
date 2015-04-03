@@ -66,6 +66,7 @@ public class CustomerBean implements Serializable {
 		customerDataModel = new CustomerDataModel(getCustomerList());
 		return customerDataModel;
 	}
+	
 
 	/**
 	 * get all customer data from database
@@ -161,10 +162,14 @@ public class CustomerBean implements Serializable {
 			log.info("Name====" + this.current.getCustomerName());
 			if (current.getCustomerId() == null || current.getCustomerId() == 0) {
 				log.info("Save Start >>>");
+					
 				current.setCustomerId(null);
 				current.setCustomerCode(generateCode.generateCustomerCode());
 				current.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-				customerService.save(current);
+				for(int i=0; i<1000; i++){
+						customerService.save(current);
+					
+				}
 				log.info("Save End >>>");
 			} else {
 				log.info("Update Start >>>");
@@ -180,6 +185,7 @@ public class CustomerBean implements Serializable {
 		} catch (Exception e) {
 			current = new Customer();
 			JsfUtil.addErrorMessage(ResourceHelper.getResources("error.save"));
+			e.printStackTrace();
 			log.error(e.toString(), e);
 		}
 	}

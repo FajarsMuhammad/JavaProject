@@ -78,7 +78,7 @@ public class MenubarBean implements Serializable {
 				if (m.getMenuLevel() == 1) {
 					DefaultSubMenu parent = new DefaultSubMenu();
 					 parent.setLabel(m.getMenuName());
-					 parent.setIcon("ui-icon-contact");
+					 parent.setIcon("ui-icon-folder");
 					model.addElement(parent);
 					buildMenuRecursive(parent, m, user);
 				}
@@ -99,7 +99,7 @@ public class MenubarBean implements Serializable {
 				if (m.getMenuUrl() == null 	&& m.getMenuLevel() == 2) {
 					DefaultSubMenu subsub = new DefaultSubMenu();
 					subsub.setLabel(m.getMenuName());
-					subsub.setIcon("ui-icon-contact");
+					subsub.setIcon("ui-icon-folder");
 					parent.addElement(subsub);
 					//model.addElement(parent);
 					buildMenuRecursive(subsub, m, user);
